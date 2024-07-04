@@ -1,0 +1,528 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "version": "1.0.0",
+    "title": "E-Mail Service API",
+    "description": "Eine API für einen E-Mail-Service ähnlich wie Gmail, zur Verwaltung von Ordnern, Nachrichten, Anhängen und Kontakten."
+  },
+  "paths": {
+    "/folders/": {
+      "post": {
+        "tags": ["Folders"],
+        "summary": "Erstellt einen neuen Ordner.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Folder"
+        },
+        "responses": {
+          "201": {
+            "description": "Erstellt"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Folders"],
+        "summary": "Listet alle Ordner auf.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Folder"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/folders/{fid}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Fid"
+        }
+      ],
+      "get": {
+        "tags": ["Folders"],
+        "summary": "Liefert einen Ordner.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Folder"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Folders"],
+        "summary": "Ändert einen Ordner.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Folder"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Folder"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Folders"],
+        "summary": "Löscht einen Ordner.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Folder"
+          }
+        }
+      }
+    },
+    "/messages/": {
+      "post": {
+        "tags": ["Messages"],
+        "summary": "Erstellt eine neue Nachricht.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Message"
+        },
+        "responses": {
+          "201": {
+            "description": "Erstellt"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Messages"],
+        "summary": "Listet alle Nachrichten auf.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Message"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/messages/{mid}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Mid"
+        }
+      ],
+      "get": {
+        "tags": ["Messages"],
+        "summary": "Liefert eine Nachricht.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Message"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Messages"],
+        "summary": "Ändert eine Nachricht.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Message"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Message"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Messages"],
+        "summary": "Löscht eine Nachricht.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Message"
+          }
+        }
+      }
+    },
+    "/attachments/": {
+      "post": {
+        "tags": ["Attachments"],
+        "summary": "Fügt einen neuen Anhang hinzu.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Attachment"
+        },
+        "responses": {
+          "201": {
+            "description": "Erstellt"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Attachments"],
+        "summary": "Listet alle Anhänge auf.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Attachment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/attachments/{aid}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Aid"
+        }
+      ],
+      "get": {
+        "tags": ["Attachments"],
+        "summary": "Liefert einen Anhang.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Attachment"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Attachments"],
+        "summary": "Ändert einen Anhang.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Attachment"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Attachment"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Attachments"],
+        "summary": "Löscht einen Anhang.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Attachment"
+          }
+        }
+      }
+    },
+    "/contacts/": {
+      "post": {
+        "tags": ["Contacts"],
+        "summary": "Erstellt einen neuen Kontakt.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Contact"
+        },
+        "responses": {
+          "201": {
+            "description": "Erstellt"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Contacts"],
+        "summary": "Listet alle Kontakte auf.",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contacts/{cid}": {
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/Cid"
+        }
+      ],
+      "get": {
+        "tags": ["Contacts"],
+        "summary": "Liefert einen Kontakt.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Contact"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Contacts"],
+        "summary": "Ändert einen Kontakt.",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Contact"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Contact"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Contacts"],
+        "summary": "Löscht einen Kontakt.",
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Contact"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "Fid": {
+        "name": "fid",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "ID des jeweiligen Ordners"
+      },
+      "Mid": {
+        "name": "mid",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "ID der jeweiligen Nachricht"
+      },
+      "Aid": {
+        "name": "aid",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "ID des jeweiligen Anhangs"
+      },
+      "Cid": {
+        "name": "cid",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        },
+        "description": "ID des jeweiligen Kontakts"
+      }
+    },
+    "requestBodies": {
+      "Folder": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Folder"
+            }
+          }
+        }
+      },
+      "Message": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Message"
+            }
+          }
+        }
+      },
+      "Attachment": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Attachment"
+            }
+          }
+        }
+      },
+      "Contact": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Contact"
+            }
+          }
+        }
+      }
+    },
+    "responses": {
+      "Folder": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Folder"
+            }
+          }
+        }
+      },
+      "Message": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Message"
+            }
+          }
+        }
+      },
+      "Attachment": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Attachment"
+            }
+          }
+        }
+      },
+      "Contact": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Contact"
+            }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "Folder": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Inbox"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-04T12:34:56Z"
+          }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 101
+          },
+          "sender": {
+            "type": "string",
+            "example": "john.doe@example.com"
+          },
+          "recipients": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "example": ["jane.doe@example.com"]
+          },
+          "subject": {
+            "type": "string",
+            "example": "Meeting Reminder"
+          },
+          "body": {
+            "type": "string",
+            "example": "Don't forget about our meeting tomorrow at 10am."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-04T12:00:00Z"
+          },
+          "folder_id": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "Attachment": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 201
+          },
+          "message_id": {
+            "type": "integer",
+            "example": 101
+          },
+          "filename": {
+            "type": "string",
+            "example": "report.pdf"
+          },
+          "mime_type": {
+            "type": "string",
+            "example": "application/pdf"
+          },
+          "size": {
+            "type": "integer",
+            "example": 102400
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "example": "https://example.com/attachments/201/report.pdf"
+          }
+        }
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 301
+          },
+          "name": {
+            "type": "string",
+            "example": "Jane Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "jane.doe@example.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "+123456789"
+          },
+          "address": {
+            "type": "string",
+            "example": "123 Main St, Anytown, USA"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2024-07-04T12:34:56Z"
+          }
+        }
+      }
+    }
+  }
+}

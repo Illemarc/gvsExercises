@@ -1,0 +1,198 @@
+openapi: 3.0.3
+info:
+  version: '1'
+  title: Autoverwaltung(mobile.de) - OpenAPI 3.0
+  description: >-
+    Dies ist eine sehr abgespeckte Version von z.B. Mobile.de oder
+    Autoscout24.de, in dem Benutzer angelegt und verändert werden- sowie
+    Automobile verwaltet werden können.
+paths:
+  /modelle/:
+    post:
+      tags:
+        - Modelle
+      summary: Legt ein neues Modell an.
+      requestBody:
+        $ref: '#/components/requestBodies/Modell'
+      responses:
+        '201':
+          description: Created
+    get:
+      tags:
+        - Modelle
+      summary: Liste der Modelle.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ModellItem'
+  /modelle/{mid}:
+    parameters:
+      - $ref: '#/components/parameters/Mid'
+    get:
+      tags:
+        - Modelle
+      summary: Liefert ein Modell
+      responses:
+        '200':
+          $ref: '#/components/responses/Modell'
+    put:
+      tags:
+        - Modelle
+      summary: Ändert ein Modell
+      requestBody:
+        $ref: '#/components/requestBodies/Modell'
+      responses:
+        '200':
+          $ref: '#/components/responses/Modell'
+    delete:
+      tags:
+        - Modelle
+      summary: Löscht ein Modell
+      responses:
+        '200':
+          $ref: '#/components/responses/Modell'
+  /benutzer/:
+    post:
+      tags:
+        - Benutzer
+      summary: Legt einen neuen Benutzer an.
+      requestBody:
+        $ref: '#/components/requestBodies/Benutzer'
+      responses:
+        '201':
+          description: Created
+    get:
+      tags:
+        - Benutzer
+      summary: Liste der Benutzer.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BenutzerItem'
+  /benutzer/{bid}:
+    parameters:
+      - $ref: '#/components/parameters/Bid'
+    get:
+      tags:
+        - Benutzer
+      summary: Liefert einen Benutzer
+      responses:
+        '200':
+          $ref: '#/components/responses/Benutzer'
+    put:
+      tags:
+        - Benutzer
+      summary: Ändert einen Benutzer
+      requestBody:
+        $ref: '#/components/requestBodies/Benutzer'
+      responses:
+        '200':
+          $ref: '#/components/responses/Benutzer'
+    delete:
+      tags:
+        - Benutzer
+      summary: Löscht einen Benutzer
+      responses:
+        '200':
+          $ref: '#/components/responses/Benutzer'
+components:
+  parameters:
+    Mid:
+      name: mid
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Id des jeweiligen Modells
+    Bid:
+      name: bid
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Id des jeweiligen Benutzers
+  requestBodies:
+    Modell:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Modell'
+    Benutzer:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Benutzer'
+  responses:
+    Modell:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Modell'
+    Benutzer:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Benutzer'
+  schemas:
+    Modell:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 12345
+        name:
+          type: string
+          example: 320i Touring
+        brand:
+          type: string
+          example: BMW
+        ps:
+          type: integer
+          example: 190
+    ModellItem:
+      type: object
+      properties:
+        name:
+          type: string
+        self_uri:
+          type: string
+          format: uri
+      example:
+        name: ID.3
+        self_uri: /modelle/123
+    Benutzer:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Harry Hirsch
+        email:
+          type: string
+          format: email
+          example: harry.hirsch@example.com
+    BenutzerItem:
+      type: object
+      properties:
+        name:
+          type: string
+        self_uri:
+          type: string
+          format: uri
+      example:
+        name: Harry Hiscrh
+        self_uri: /benutzer/1
