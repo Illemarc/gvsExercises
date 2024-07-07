@@ -1,0 +1,30 @@
+1. Impossible to Achieve Absolute Certainty: 
+The Two Generals Problem shows that it's impossible to achieve absolute certainty in communication over an unreliable channel. In our scenario, the agents can never be absolutely sure that they have synchronized their attack time because each message and its acknowledgement can be intercepted.
+
+
+2. A strategy to the Problem could be:
+
+Day1: 	Agent A sends a initial message, e.g. lets attack at sunrise on day 7!
+Day2: 	Agent B receives the message, B sends an acknowledgement back to A, e.g., "Message received. Attack confirmed for sunrise on the 7th day."
+Day3-6: Both Agents repeatedly send confirmations every day.
+
+Have a fallback plan: Both Agents agree in the initial message that if no further communication is received after the initial proposal (i.e., no confirmations or acknowledgements are received by either agent), they will still proceed with the proposed attack time to avoid indefinite delay.
+
+Have redundant Messages: Send multiple pigeons with the same message each day. This increases the likelihood that at least one message gets through despite interceptions.
+
+Have enough time: Propose an attack time that allows for several days of communication. This provides more opportunities for messages to be delivered and acknowledged.
+
+Verifying the Integrity of the Messages: Include a unique identifier or sequence number with each message to ensure agents can distinguish between original messages and repeated ones.
+
+
+3. Implications in TCP/IP model:
+
+Despite retransmissions and ACKs, TCP cannot guarantee absolute certainty of mutual understanding between the sender and receiver, as there can always be uncertainty about the final state of the connection.
+#TCP can use timeouts and retransmissions to handle packet loss. While this improves reliability it introduces latency.
+#TCP uses three way handshake to synchronize Sender and Receiver. While this solution achieves a high propability of success ist still not 100% safe due to packet loss or delays.
+This involves three steps: SYN, SYN-ACK, and ACK.
+#TCP connection termination uses a four-step process involving FIN and ACK packets from both sides.
+
+Modern network protocols often settle for probabilistic guarantees rather than absolute certainty. This is a pragmatic approach to dealing with the inherent unreliability of networks.
+The two generals problem illustrates the inherent challenges of achieving absolute certainty in communication over unreliable channels. In modern computer networks, particularly with the TCP/IP model, this problem is addressed through mechanisms like acknowledgements, retransmissions, and consensus protocols
+
